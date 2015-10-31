@@ -31,10 +31,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/martinheidegger/varsize-string.git"
+    "url": "git+https://github.com/martinheidegger/wcstring.git"
   },
   "bugs": {
-    "url": "https://github.com/martinheidegger/varsize-string/issues"
+    "url": "https://github.com/martinheidegger/wcstring/issues"
   },
-  "homepage": "https://github.com/martinheidegger/varsize-string#readme"
+  "homepage": "https://github.com/martinheidegger/wcstring#readme"
 }
