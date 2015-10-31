@@ -1,0 +1,40 @@
+{
+  "name": "wcstring",
+  "version": "1.0.0",
+  "description": "Terminal string based on wcsize",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "tape test/**/*.js; standard"
+  },
+  "keywords": [
+    "unicode",
+    "visualwidth",
+    "terminal",
+    "wide character",
+    "wc",
+    "wide character string",
+    "wcs",
+    "terminal",
+    "width",
+    "wcwidth",
+    "wcswidth"
+  ],
+  "author": "Martin Heidegger <martin.heidegger@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "istanbul": "^0.4.0",
+    "standard": "^5.3.1",
+    "tape": "^4.2.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/martinheidegger/varsize-string.git"
+  },
+  "bugs": {
+    "url": "https://github.com/martinheidegger/varsize-string/issues"
+  },
+  "homepage": "https://github.com/martinheidegger/varsize-string#readme"
+}
