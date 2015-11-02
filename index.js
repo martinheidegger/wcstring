@@ -2,6 +2,7 @@ const wcsize = require('wcsize')
 const inherits = require('util').inherits
 const VarSizeString = require('varsize-string')
 const cache = {}
+const eatControlCharacters = require('./eatControlCharacters')
 
 function cacheWcSize (chr) {
   var size = cache[chr]
@@ -12,11 +13,15 @@ function cacheWcSize (chr) {
   return size
 }
 
-function WCString (string) {
+function WCString (string, ignoreControlCharacters) {
   if (!(this instanceof WCString)) {
-    return new WCString(string)
+    return new WCString(string, ignoreControlCharacters)
   }
-  VarSizeString.call(this, string, cacheWcSize)
+  var charSizes = cacheWcSize
+  if (ignoreControlCharacters !== false) {
+    charSizes = eatControlCharacters(charSizes)
+  }
+  VarSizeString.call(this, string, charSizes)
 }
 inherits(WCString, VarSizeString)
 module.exports = WCString
