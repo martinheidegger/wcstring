@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "tape test/**/*.js; standard"
+    "test": "istanbul cover tape test/**/*.js && standard"
   },
   "keywords": [
     "unicode",
@@ -38,7 +38,7 @@
   },
   "homepage": "https://github.com/martinheidegger/wcstring#readme",
   "dependencies": {
-    "varsize-string": "^1.0.0",
+    "varsize-string": "^2.0.1",
     "wcsize": "^1.0.0"
   }
 }
