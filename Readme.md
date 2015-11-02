@@ -41,7 +41,7 @@ Optionally takes `endOffset` which is the size offset from the end of the string
 
 ### `.substring(<int> startSize, [<int> endSize])`
 Analogous to [`String.substring`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/String/substring). This method will return the **fully visible** characters between `startSize` and `endSize`. If `endSize` is not given it will assume a substring from `startSize` until the end of the string.
-**Unlike** the `String.substring` however this method returns an object with the properties `size` and `string` in order to know the size of the substring.
+**Unlike** the `String.substring` method however this method returns an object with the properties `size` and `string` in order to know the size of the substring.
 
 Example:
 ```JavaScript
