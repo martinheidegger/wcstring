@@ -1,7 +1,7 @@
 const findEnd = require('./findControlCharacters')
 
 module.exports = function eatControlCharacters (method) {
-  return function (chr, formerChr, codes, i, context) {
+  return function eatControlCharactersWrap (chr, formerChr, codes, i, context) {
     if (context.controlChars === undefined) {
       context.controlChars = {}
     }

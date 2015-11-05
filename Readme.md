@@ -41,7 +41,7 @@ Optionally takes `endOffset` which is the size offset from the end of the string
 
 ### `.substring(<int> startSize, [<int> endSize])`
 Analogous to [`String.substring`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/String/substring). This method will return the **fully visible** characters between `startSize` and `endSize`. If `endSize` is not given it will assume a substring from `startSize` until the end of the string.
-**Unlike** the `String.substring` method however this method returns an object with the properties `size` and `string` in order to know the size of the substring.
+_However:_ **Unlike** `String.substring`, this method returns an object with the properties `size` and `string` in order to know the size of the substring.
 
 Example:
 ```JavaScript
@@ -52,7 +52,7 @@ vsstring('abcdef', charWidth).substring(0, 3) // {string: 'abc', size: 2.4}
 ### `.substr(<int> startSize, [<int> size])`
 Equal to `.substring(startSize, startSize + size)`.
 
-### `.wrap(<int> width)`
+### `.wrap(<int> width, [padding])`
 Normalizes the string in order for all lines to fit within `width`.
 
 Example:
@@ -63,6 +63,107 @@ vsstring('ab cd ef', charWidth).wrap(5) // 'ab cd\nef'
 vsstring('ab cd ef', charWidth).wrap(3) // 'ab\ncd\nef'
 ```
 
+#### Padding
+The padding option takes a padding specification and applies it to the
+wrapping process.
+
+Example:
+
+```JavaScript
+var padding = {
+    first: {left: ' - ', right: ' '},
+    regular: {left: '   ', right: ' '}
+}
+vsstring('abcdefghijklmnop', charWidth).wrap(10, padding)
+//  - abcdef
+//    ghijkl
+//    mnop
+```
+
+There are a few shorthands to specifying the padding:
+
+```JavaScript
+padding = '  '
+```
+
+... is equals to ...
+
+```JavaScript
+{
+    first: '  ',
+    regular: '  '
+}
+```
+
+... is equals to ...
+
+```JavaScript
+{
+    first: {left: '  ': right: undefined},
+    regular: {left: '  ': right: undefined}
+}
+```
+
+Also you can preset left/right for both first and regular:
+
+```JavScript
+{
+    right: 'x',
+    first: {left: ' - '},
+    regular: {left: '   '}
+}
+```
+
+... is equal to ... 
+
+```JavaScript
+{
+    first: {left: ' - ', right: 'x'},
+    regular: {left: '   ', right: 'x'}
+}
+```
+
+Note that the left/right presets override the first/regular specification:
+
+```JavaScript
+{
+    left: 'x',
+    first: '-',
+    regular: ' '
+}
+```
+
+... is equal to ...
+
+```JavaScript
+{
+    first: {left: 'x', right: undefined},
+    regular: {left: 'x', right: undefined}
+}
+```
+
+Also it supports a fallback to regular if first is missing:
+
+```JavaScript
+{
+    regular: {left: 'x', right: undefined}
+}
+```
+
+... is equal to ...
+
+```JavaScript
+{
+    first: {left: 'x', right: undefined},
+    regular: {left: 'x', right: undefined}
+}
+```
+
+### `wcstring.padding([process], [width], padding)`
+Turns a flexible padding definition into a clear padding definition. You can pass in an optional `process` variable to process the strings before they are being turned into wcstrings. You can also pass-in a `width` to make sure that the padding will not exceed the width of, say, a wrapped string.
+
 ### `.truncate(<int> size, <wcstring || String> suffix)`
 Truncates the string after a size. Will append the given `suffix` to the string if it does exceed the size.
 
+### `.pop()`
+Removes the last character from the string and returns the new `.size()`.
