@@ -1,6 +1,6 @@
 {
   "name": "wcstring",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Terminal string based on wcsize",
   "main": "index.js",
   "directories": {
